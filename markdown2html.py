@@ -11,6 +11,6 @@ if __name__ == "__main__":
         print("Usage: ./markdown2html.py README.md README.html")
         exit(1)
     if os.path.exists(sys.argv[1]) is False:
-        sys.stderr.write("Missing {}".format(sys.argv[1]))
+        sys.stderr.write("Missing {}\n".format(sys.argv[1]))
         exit(1)
     exit(0)
