@@ -2,11 +2,11 @@
 """
 This module contains script to work with the command line.
 """
+import sys
+import os
+
 
 if __name__ == "__main__":
-    import sys
-    import os
-
     if len(sys.argv) < 2:
         sys.stderr.write("Usage: ./markdown2html.py README.md README.html\n")
         exit(1)
