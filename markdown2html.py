@@ -13,5 +13,4 @@ if __name__ == "__main__":
     if os.path.exists(sys.argv[1]) is False:
         sys.stderr.write("Missing {}\n".format(sys.argv[1]))
         exit(1)
-    print("")
     exit(0)
