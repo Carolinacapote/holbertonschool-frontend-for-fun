@@ -35,7 +35,7 @@ if __name__ == "__main__":
                                         line[len(title) + 1:-1] +
                                         html_titles[title][1] + "\n")
                         break
-            if line.startswith("- "):
+            elif line.startswith("- "):
                 if i == 0 or lines[i - 1].startswith("- ") is False:
                     html_file.write("<ul>\n<li>" + line[2:-1] + "</li>\n")
                 if i != 0 and lines[i - 1].startswith("- "):
@@ -44,7 +44,7 @@ if __name__ == "__main__":
                         startswith("- ") is False:
                     html_file.write("</ul>\n")
 
-            if line.startswith("* "):
+            elif line.startswith("* "):
                 if i == 0 or lines[i - 1].startswith("* ") is False:
                     html_file.write("<ol>\n<li>" + line[2:-1] + "</li>\n")
                 if i != 0 and lines[i - 1].startswith("* "):
@@ -52,6 +52,15 @@ if __name__ == "__main__":
                 if i == len(lines) - 1 or lines[i + 1].\
                         startswith("* ") is False:
                     html_file.write("</ol>\n")
+
+            else:
+                if i == 0 or lines[i - 1] == "\n":
+                    html_file.write("<p>\n" + line)
+                if i == len(lines) - 1 or lines[i + 1] == "\n":
+                    html_file.write("</p>\n")
+                if line != "\n" and i < len(lines) - 1\
+                        and lines[i + 1] != "\n":
+                    html_file.write("<br/>\n" + lines[i + 1])
 
     html_file.close()
     md_file.close()
