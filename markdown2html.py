@@ -46,6 +46,15 @@ if __name__ == "__main__":
                         startswith("- ") is False:
                     html_file.write("</ul>\n")
 
+            if line.startswith("* "):
+                if i == 0 or lines[i - 1].startswith("* ") is False:
+                    html_file.write("<ol>\n<li>" + line[2:-1] + "</li>\n")
+                if i != 0 and lines[i - 1].startswith("* "):
+                    html_file.write("<li>" + line[2:-1] + "</li>\n")
+                if i == len(lines) - 1 or lines[i + 1].\
+                        startswith("* ") is False:
+                    html_file.write("</ol>\n")
+
     html_file.close()
     md_file.close()
 
