@@ -26,7 +26,6 @@ if __name__ == "__main__":
 
     with open(sys.argv[1], "r") as md_file:
         lines = md_file.readlines()
-        print(lines)
         for i in range(len(lines)):
             line = lines[i]
             if line.startswith("#"):
