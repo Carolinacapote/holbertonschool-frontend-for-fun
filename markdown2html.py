@@ -38,10 +38,11 @@ if __name__ == "__main__":
                                         line[len(title) + 1:-1] +
                                         html_titles[title][1] + "\n")
                         break
-            if line.startswith("-"):
+            elif line.startswith("- "):
                 new_ul += "\t" + html_li[0] + line[2:-1] + html_li[1] + "\n"
-            if line.startswith("*"):
+            elif line.startswith("* "):
                 new_ol += "\t" + html_li[0] + line[2:-1] + html_li[1] + "\n"
+
     if len(new_ul) > 5:
         html_file.write(new_ul + "</ul>\n")
     if len(new_ol) > 5:
