@@ -30,7 +30,8 @@ if __name__ == "__main__":
 
     with open(sys.argv[1], "r") as md_file:
         lines = md_file.readlines()
-        for line in lines:
+        for i in range(len(lines)):
+            line = lines[i]
             if line.startswith("#"):
                 for title in html_titles:
                     if line.startswith(title):
