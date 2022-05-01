@@ -53,6 +53,15 @@ if __name__ == "__main__":
                         startswith("* ") is False:
                     html_file.write("</ol>\n")
 
+            else:
+                if i == 0 or lines[i - 1] == "\n":
+                    html_file.write("<p>\n" + line)
+                if i == len(lines) - 1 or lines[i + 1] == "\n":
+                    html_file.write("</p>\n")
+                if line != "\n" and i < len(lines) - 1\
+                        and lines[i + 1] != "\n":
+                    html_file.write("<br/>\n" + lines[i + 1])
+
     html_file.close()
     md_file.close()
 
