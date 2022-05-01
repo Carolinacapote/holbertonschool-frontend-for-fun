@@ -37,7 +37,7 @@ if __name__ == "__main__":
                                         html_titles[title][1] + "\n")
                         break
             elif line.startswith("-"):
-                new_ul += "\t" + html_li[0] + line[2:-1] + html_li[1] + "\n"
+                new_ul += html_li[0] + line[2:-1] + html_li[1] + "\n"
     if len(new_ul) > 5:
         html_file.write(new_ul + "</ul>\n")
     exit(0)
