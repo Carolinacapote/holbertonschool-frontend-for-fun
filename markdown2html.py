@@ -24,8 +24,6 @@ if __name__ == "__main__":
         "#": ["<h1>", "</h1>"]
     }
 
-    new_ul = "<ul>\n"
-    new_ol = "<ol>\n"
     new_paragraph = ""
 
     with open(sys.argv[1], "r") as md_file:
@@ -39,6 +37,14 @@ if __name__ == "__main__":
                                         line[len(title) + 1:-1] +
                                         html_titles[title][1] + "\n")
                         break
+            if line.startswith("- "):
+                if i == 0 or lines[i - 1].startswith("- ") is False:
+                    html_file.write("<ul>\n<li>" + line[2:-1] + "</li>\n")
+                if i != 0 and lines[i - 1].startswith("- "):
+                    html_file.write("<li>" + line[2:-1] + "</li>\n")
+                if i == len(lines) - 1 or lines[i + 1].\
+                        startswith("- ") is False:
+                    html_file.write("</ul>\n")
 
     html_file.close()
     md_file.close()
