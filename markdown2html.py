@@ -26,6 +26,7 @@ if __name__ == "__main__":
 
     with open(sys.argv[1], "r") as md_file:
         lines = md_file.readlines()
+        print(lines)
         for i in range(len(lines)):
             line = lines[i]
             if line.startswith("#"):
@@ -52,15 +53,6 @@ if __name__ == "__main__":
                 if i == len(lines) - 1 or lines[i + 1].\
                         startswith("* ") is False:
                     html_file.write("</ol>\n")
-
-            else:
-                if i == 0 or lines[i - 1] == "\n":
-                    html_file.write("<p>\n" + line)
-                if i == len(lines) - 1 or lines[i + 1] == "\n":
-                    html_file.write("</p>\n")
-                if line != "\n" and i < len(lines) - 1\
-                        and lines[i + 1] != "\n":
-                    html_file.write("<br/>\n" + lines[i + 1])
 
     html_file.close()
     md_file.close()
