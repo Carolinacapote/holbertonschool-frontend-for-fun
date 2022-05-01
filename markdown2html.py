@@ -56,6 +56,7 @@ if __name__ == "__main__":
                                 new_paragraph += "<br/>\n"
                             j += 1
                         new_paragraph += "</p>\n"
+
     if len(new_ul) > 5:
         html_file.write(new_ul + "</ul>\n")
     if len(new_ol) > 5:
