@@ -25,7 +25,9 @@ if __name__ == "__main__":
 
     html_li = ["<li>", "</li>"]
     new_ul = "<ul>\n"
+    new_ol = "<ol>\n"
     html_file = open(sys.argv[2], 'w')
+
     with open(sys.argv[1], "r") as md_file:
         lines = md_file.readlines()
         for line in lines:
@@ -37,7 +39,13 @@ if __name__ == "__main__":
                                         html_titles[title][1] + "\n")
                         break
             elif line.startswith("-"):
-                new_ul += html_li[0] + line[2:-1] + html_li[1] + "\n"
+                new_ul += "\t" + html_li[0] + line[2:-1] + html_li[1] + "\n"
+            elif line.startswith("*"):
+                new_ol += "\t" + html_li[0] + line[2:-1] + html_li[1] + "\n"
     if len(new_ul) > 5:
         html_file.write(new_ul + "</ul>\n")
+    if len(new_ol) > 5:
+        html_file.write(new_ol + "</ol>\n")
+    html_file.close()
+    md_file.close()
     exit(0)
