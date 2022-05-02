@@ -3,6 +3,64 @@
 This module contains script to work with the command line.
 """
 
+
+def validate_bold(line):
+    """
+    Validate if the line has bold or italic text.
+    """
+    index = line.find("**")
+    res_str = ""
+
+    if index != -1:
+        res_str += line[:index] + "<b>"
+        new_str = line[index + 2:]
+        idx = new_str.find("**")
+        if idx != -1:
+            if idx + 1 == len(new_str):
+                result += new_str[:idx] + "</b>\n"
+            else:
+                res_str += new_str[:idx] + "</b>"
+                res_str += validate_bold(new_str[idx + 2:])
+
+        else:
+            res_str = line
+
+    else:
+        res_str = line
+
+    final_str = validate_em(res_str)
+    print(final_str)
+
+    return final_str
+
+
+def validate_em(line):
+    """
+    Validate if the line has italic text.
+    """
+    index = line.find("__")
+    result = ""
+
+    if index != -1:
+        result += line[:index] + "<em>"
+        new_str = line[index + 2:]
+        idx = new_str.find("__")
+        if idx != -1:
+            if idx + 1 == len(new_str):
+                result += new_str[:idx] + "</em>\n"
+            else:
+                result += new_str[:idx] + "</em>"
+                result += validate_em(new_str[idx + 2:])
+
+        else:
+            result = line
+
+    else:
+        result = line
+
+    return result
+
+
 if __name__ == "__main__":
     import sys
     import os
@@ -27,7 +85,8 @@ if __name__ == "__main__":
     with open(sys.argv[1], "r") as md_file:
         lines = md_file.readlines()
         for i in range(len(lines)):
-            line = lines[i]
+            line = validate_bold(lines[i])
+
             if line == "\n" and lines[i - 1] == "\n"\
                     or line == "\n" and lines[i + 1] == "\n":
                 continue
