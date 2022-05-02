@@ -29,7 +29,6 @@ def validate_bold(line):
         res_str = line
 
     final_str = validate_em(res_str)
-    print(final_str)
 
     return final_str
 
